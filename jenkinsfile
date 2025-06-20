@@ -2,27 +2,27 @@ pipeline {
     agent none
 
     stages {
-        stage('Dev Build') {
+        stage('Build in Dev') {
             agent { label 'dev' }
             steps {
-                echo "Running on Dev Agent"
-                // clone code, build, run unit tests, etc.
+                echo "Running build on DEV agent"
+                sh 'echo Building source code'
             }
         }
 
-        stage('QA Test') {
+        stage('Test in QA') {
             agent { label 'qa' }
             steps {
-                echo "Running on QA Agent"
-                // run integration tests or QA scripts
+                echo "Running tests on QA agent"
+                sh 'echo Running automated tests'
             }
         }
 
-        stage('Production Deploy') {
+        stage('Deploy to Prod') {
             agent { label 'prod' }
             steps {
-                echo "Running on Prod Agent"
-                // docker build & push, deployment, etc.
+                echo "Deploying to PROD environment"
+                sh 'echo Deploying to production server'
             }
         }
     }
