@@ -1,0 +1,29 @@
+pipeline {
+    agent none
+
+    stages {
+        stage('Dev Build') {
+            agent { label 'dev' }
+            steps {
+                echo "Running on Dev Agent"
+                // clone code, build, run unit tests, etc.
+            }
+        }
+
+        stage('QA Test') {
+            agent { label 'qa' }
+            steps {
+                echo "Running on QA Agent"
+                // run integration tests or QA scripts
+            }
+        }
+
+        stage('Production Deploy') {
+            agent { label 'prod' }
+            steps {
+                echo "Running on Prod Agent"
+                // docker build & push, deployment, etc.
+            }
+        }
+    }
+}
